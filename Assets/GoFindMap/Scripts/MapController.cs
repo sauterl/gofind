@@ -169,7 +169,7 @@ namespace Assets.GoFindMap.Scripts {
         }
 
         public static string AddCredentialsToUrl(string url) {
-            return url + "&key=" + GoogleMapsKey.API_KEY;
+            return url + "&key=" + GoogleMapsKey.API_KEY; // Use YOUR Google Maps Static API key here
         }
 
         private string BuildUrl(double latitude, double longitude, string[] markers = null) {
