@@ -12,8 +12,6 @@ at it's real-world location as an augmented reality object.
 
 ## Demo
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/W14e8SRZGkA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 See the [demo](https://youtu.be/W14e8SRZGkA) on Youtube
 
 ## System
