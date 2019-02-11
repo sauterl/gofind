@@ -1,0 +1,5 @@
+Sources designed by http://colebemis.com/
+Icons used from flaticon collection "Feathers":
+* Signs-1
+* Clock
+* Photo Camera

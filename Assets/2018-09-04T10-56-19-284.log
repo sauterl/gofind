@@ -1,0 +1,67 @@
+Started logging @ 2018-09-04 10:56:19.288
+[2018-09-04 08:56:19.290][MapTouchController] DEBUG - Changing doubletap enabled from False to False
+[2018-09-04 08:56:19.294][MapTouchController] DEBUG - Changing touch enabled from True to False
+[2018-09-04 08:56:19.317][Controller] DEBUG - Awake!
+[2018-09-04 08:56:19.319][Controller] DEBUG - Created LocationAwarenessPlugin
+[2018-09-04 08:56:19.327][Controller] DEBUG - Added UnityLocationService to Controller
+[2018-09-04 08:56:19.330][CineastApi] DEBUG - Awake
+[2018-09-04 08:56:19.339][CineastApi] DEBUG - Set configuration!
+[2018-09-04 08:56:19.344][CineastApi] DEBUG - Successfully loaded config {"cineastHost":"http://localhost:4567/","imagesHost":"http://localhost/"}
+[2018-09-04 08:56:19.346][Controller] DEBUG - Added CineastApi to Controller
+[2018-09-04 08:56:19.476][Controller] DEBUG - Restoring state
+[2018-09-04 08:56:19.479][Controller] DEBUG - Restored
+[2018-09-04 08:56:19.481][Controller] INFO - Unpaused
+[2018-09-04 08:56:19.527][PanelManager] DEBUG - Adding panel with panelname=home and gameobject name=HomePanel
+[2018-09-04 08:56:19.530][PanelManager] DEBUG - Adding panel with panelname=choice and gameobject name=ChoicePanel
+[2018-09-04 08:56:19.532][PanelManager] DEBUG - Adding panel with panelname=display and gameobject name=DisplayImagePanel
+[2018-09-04 08:56:19.537][PanelManager] DEBUG - Adding panel with panelname=map and gameobject name=MapPanel
+[2018-09-04 08:56:19.541][PanelManager] DEBUG - Adding panel with panelname=customize and gameobject name=CustomizeSearchPanel
+[2018-09-04 08:56:19.544][PanelManager] DEBUG - Adding panel with panelname=result and gameobject name=ResultLocationDisplay
+[2018-09-04 08:56:19.546][PanelManager] DEBUG - Adding panel with panelname=filter and gameobject name=FilterPanel
+[2018-09-04 08:56:19.548][PanelManager] DEBUG - Adding panel with panelname=waiting and gameobject name=WaitingPanel
+[2018-09-04 08:56:19.551][PanelManager] DEBUG - Adding panel with panelname=mapShow and gameobject name=MapShowPanel
+[2018-09-04 08:56:19.553][PanelManager] DEBUG - Adding panel with panelname=queryImage and gameobject name=QueryImagePanel
+[2018-09-04 08:56:19.558][PanelManager] DEBUG - Adding panel with panelname=ar-display and gameobject name=ARDisplayPanel
+[2018-09-04 08:56:19.562][PanelManager] DEBUG - Showing panel home
+[2018-09-04 08:56:19.565][PanelManager] DEBUG - Last Active panel: home
+[2018-09-04 08:56:19.566][PanelManager] DEBUG - Going to call onVisibilityChanged(false) on home
+[2018-09-04 08:56:19.569][PanelManager] DEBUG - Deactivating all panels
+[2018-09-04 08:56:19.571][PanelManager] DEBUG - Setting home's visibility to False
+[2018-09-04 08:56:19.574][PanelManager] DEBUG - Setting choice's visibility to False
+[2018-09-04 08:56:19.577][PanelManager] DEBUG - Setting display's visibility to False
+[2018-09-04 08:56:19.580][PanelManager] DEBUG - Setting map's visibility to False
+[2018-09-04 08:56:19.583][PanelManager] DEBUG - Setting customize's visibility to False
+[2018-09-04 08:56:19.586][PanelManager] DEBUG - Setting result's visibility to False
+[2018-09-04 08:56:19.589][PanelManager] DEBUG - Setting filter's visibility to False
+[2018-09-04 08:56:19.596][PanelManager] DEBUG - Setting waiting's visibility to False
+[2018-09-04 08:56:19.600][PanelManager] DEBUG - Setting mapShow's visibility to False
+[2018-09-04 08:56:19.602][PanelManager] DEBUG - Setting queryImage's visibility to False
+[2018-09-04 08:56:19.604][PanelManager] DEBUG - Setting ar-display's visibility to False
+[2018-09-04 08:56:19.608][PanelManager] DEBUG - Setting home's visibility to True
+[2018-09-04 08:56:19.611][PanelManager] DEBUG - Going to call onVisibilityChanged(true) on home
+[2018-09-04 08:56:19.613][Controller] DEBUG - Start
+[2018-09-04 08:56:19.614][Controller] WARN - No location service available. Using default location
+[2018-09-04 08:56:19.615][Controller] DEBUG - Initialize Map GeoLocGeoLocation [latitude=47.560127, longitude=7.589704]
+[2018-09-04 08:56:19.627][Controller] INFO - Early initialization done
+[2018-09-04 08:56:20.435][MapTouchController] DEBUG - Changing doubletap enabled from False to True
+[2018-09-04 08:56:22.016][Controller] INFO - Go!
+[2018-09-04 08:56:22.025][PanelManager] DEBUG - Showing panel waiting
+[2018-09-04 08:56:22.028][PanelManager] DEBUG - Last Active panel: home
+[2018-09-04 08:56:22.033][PanelManager] DEBUG - Going to call onVisibilityChanged(false) on home
+[2018-09-04 08:56:22.039][PanelManager] DEBUG - Deactivating all panels
+[2018-09-04 08:56:22.044][PanelManager] DEBUG - Setting home's visibility to False
+[2018-09-04 08:56:22.049][PanelManager] DEBUG - Setting choice's visibility to False
+[2018-09-04 08:56:22.053][PanelManager] DEBUG - Setting display's visibility to False
+[2018-09-04 08:56:22.057][PanelManager] DEBUG - Setting map's visibility to False
+[2018-09-04 08:56:22.060][PanelManager] DEBUG - Setting customize's visibility to False
+[2018-09-04 08:56:22.063][PanelManager] DEBUG - Setting result's visibility to False
+[2018-09-04 08:56:22.066][PanelManager] DEBUG - Setting filter's visibility to False
+[2018-09-04 08:56:22.068][PanelManager] DEBUG - Setting waiting's visibility to False
+[2018-09-04 08:56:22.071][PanelManager] DEBUG - Setting mapShow's visibility to False
+[2018-09-04 08:56:22.075][PanelManager] DEBUG - Setting queryImage's visibility to False
+[2018-09-04 08:56:22.077][PanelManager] DEBUG - Setting ar-display's visibility to False
+[2018-09-04 08:56:22.080][PanelManager] DEBUG - Setting waiting's visibility to True
+[2018-09-04 08:56:22.082][PanelManager] DEBUG - Going to call onVisibilityChanged(true) on waiting
+[2018-09-04 08:56:29.622][Controller] DEBUG - Removing data
+[2018-09-04 08:56:29.624][IOUtils] DEBUG - Removed data file
+[2018-09-04 08:56:29.625][IOUtils] DEBUG - Did data file survive: no

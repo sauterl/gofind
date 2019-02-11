@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/LocationAwarenessPlugin.iml" filepath="$PROJECT_DIR$/LocationAwarenessPlugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/las/las.iml" filepath="$PROJECT_DIR$/las/las.iml" />
+    </modules>
+  </component>
+</project>

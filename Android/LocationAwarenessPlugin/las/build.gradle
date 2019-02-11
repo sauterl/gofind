@@ -1,0 +1,75 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+
+    defaultConfig {
+        minSdkVersion 27
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
+    lintOptions{
+        abortOnError false
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    // So that license and notice of libraries is only included once
+    packagingOptions {
+        pickFirst 'META-INF/LICENSE'
+        pickFirst 'META-INF/NOTICE'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], exclude: 'UnityClasses.jar', dir: 'libs')
+    compile fileTree(include: ['*.jar'], exclude: 'support*', dir: 'dependencies')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:27.0.0'
+    testCompile 'junit:junit:4.12'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.3'
+    provided files('libs/UnityClasses.jar')
+}
+
+task copyDependencies(type: Copy){
+    logger.info("Copying dependencies...");
+    from configurations.compile
+    into 'dependencies'
+}
+
+task cleanDependencies(type: Delete){
+    delete 'dependencies'
+}
+
+task cleanDebugPluginDir(type: Delete){
+    String pluginDir = "${rootDir.getPath()}/../../Assets/Plugins/LocationAwarenessPlugin/"
+    String pluginName = "${project.name}-debug.aar";
+    delete(pluginDir+pluginName, pluginDir+pluginName+".meta");
+}
+
+task deployDebugPlugin(dependsOn: cleanDebugPluginDir, type: Copy){
+    logger.info("From: "+"${buildDir.getPath()}/outputs/aar");//DEBUG
+    from "${buildDir.getPath()}/outputs/aar/";
+    logger.info("Include: "+"${project.name}-debug.aar");//DEBUG
+    include "${project.name}-debug.aar"
+    logger.info("Into: "+"${rootDir.getPath()}/../../Assets/Plugins/LocationAwarenessPlugin/")//DEBUG
+    into "${rootDir.getPath()}/../../Assets/Plugins/LocationAwarenessPlugin/"
+
+    // Make it run ALWAYS
+    outputs.upToDateWhen {false}
+}
+

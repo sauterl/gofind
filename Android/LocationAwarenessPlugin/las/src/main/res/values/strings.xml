@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">las</string>
+    <string name="service_desc">Location awareness service. Startet by the application and may cause the application to fail, if killed.</string>
+</resources>
