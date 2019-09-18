@@ -1,8 +1,8 @@
 ﻿using System;
 using Assets.GoFindMap.Scripts;
-using Assets.Modules.CineastAPI;
 using Assets.Modules.SimpleLogging;
-using CineastAPI.Query;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models.Messages.Query;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 using Logger = Assets.Modules.SimpleLogging.Logger;

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Modules.CineastAPI;
 using Assets.Modules.SimpleLogging;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Processing;
 
 namespace Assets.Scripts.Core {
     public class TemporalRangeFilter : FilterStrategy {

@@ -6,6 +6,7 @@
     "com.unity.package-manager-ui": "2.0.7",
     "com.unity.purchasing": "2.0.3",
     "com.unity.textmeshpro": "1.4.1",
+    "com.vitrivr.unityinterface.cineastapi": "https://github.com/vitrivr/UnityInterface.git#release",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.assetbundle": "1.0.0",
@@ -36,5 +37,11 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
+  },
+  "lock": {
+    "com.vitrivr.unityinterface.cineastapi": {
+      "hash": "87d6de609a8166ce4ddb99bd8c9b298cd1745404",
+      "revision": "release"
+    }
   }
 }

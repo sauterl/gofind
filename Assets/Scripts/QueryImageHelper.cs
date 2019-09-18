@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using Assets.Modules.CineastAPI;
-using Assets.Modules.SimpleLogging;
 using UnityEngine;
 using UnityEngine.UI;
 using Logger = Assets.Modules.SimpleLogging.Logger;

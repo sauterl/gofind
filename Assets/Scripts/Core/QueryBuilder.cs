@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.GoFindMap.Scripts;
-using Assets.Modules.CineastAPI;
 using Assets.Modules.SimpleLogging;
 using Assets.Scripts.UI;
 using Assets.Scripts.UI.Query;
-using CineastAPI.Query;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models.Messages.Query;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Utils;
 using UnityEngine;
 using Logger = Assets.Modules.SimpleLogging.Logger;
 

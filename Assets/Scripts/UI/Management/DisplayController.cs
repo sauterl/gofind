@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
-using Assets.Modules.CineastAPI;
 using Assets.Scripts.Core;
 using Assets.Scripts.UI;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
