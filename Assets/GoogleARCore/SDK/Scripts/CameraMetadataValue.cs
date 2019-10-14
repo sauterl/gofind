@@ -26,8 +26,8 @@ namespace GoogleARCore
     using UnityEngine;
 
     /// <summary>
-    /// Struct to contain camera metadata's value. When querying data from the struct, caller is
-    /// responsible for making sure the querying data type matches the ValueType.
+    /// Struct to contain camera metadata's value. When querying data from the struct, caller is responsible 
+    /// for making sure the querying data type matches the ValueType.
     ///
     /// For example: if ValueType is typeof(byte), caller should only use
     /// CameraMetadataValue.AsByte() to access the value.
@@ -136,9 +136,8 @@ namespace GoogleARCore
         }
 
         /// <summary>
-        /// Constructs CameraMetadataValue using CameraMetadataRational. This constructor only sets
-        /// the CameraMetadataRational field in the struct, leaving the rest of the data to default
-        /// value.
+        /// Constructs CameraMetadataValue using CameraMetadataRational. This constructor only sets the CameraMetadataRational field
+        /// in the struct, leaving the rest of the data to default value.
         /// </summary>
         /// <param name="rationalValue">The CameraMetadataRational value set to the struct.</param>
         public CameraMetadataValue(CameraMetadataRational rationalValue)
@@ -154,10 +153,9 @@ namespace GoogleARCore
         }
 
         /// <summary>
-        /// Gets the Type of the CameraMetadataValue. This Type must be used to call the proper
-        /// query function.
+        /// Gets the Type of the CameraMetadataValue. This Type must be used to call the proper query function.
         /// </summary>
-        public Type ValueType
+        public Type ValueType 
         {
             get
             {
@@ -182,8 +180,8 @@ namespace GoogleARCore
         }
 
         /// <summary>
-        /// Gets sbyte value from the struct. This function checks if the querying type matches the
-        /// internal type field, and logs error if the types do not match.
+        /// Gets sbyte value from the struct. This function checks if the querying type matches the internal
+        /// type field, and logs error if the types do not match.
         /// </summary>
         /// <returns>Returns sbyte value stored in the struct.</returns>
         public sbyte AsByte()
@@ -197,8 +195,8 @@ namespace GoogleARCore
         }
 
         /// <summary>
-        /// Gets int value from the struct. This function checks if the querying type matches the
-        /// internal type field, and logs error if the types do not match.
+        /// Gets int value from the struct. This function checks if the querying type matches the internal
+        /// type field, and logs error if the types do not match.
         /// </summary>
         /// <returns>Returns int value stored in the struct.</returns>
         public int AsInt()
@@ -212,8 +210,8 @@ namespace GoogleARCore
         }
 
         /// <summary>
-        /// Gets float value from the struct. This function checks if the querying type matches the
-        /// internal type field, and logs error if the types do not match.
+        /// Gets float value from the struct. This function checks if the querying type matches the internal
+        /// type field, and logs error if the types do not match.
         /// </summary>
         /// <returns>Returns float value stored in the struct.</returns>
         public float AsFloat()
@@ -227,8 +225,8 @@ namespace GoogleARCore
         }
 
         /// <summary>
-        /// Gets long value from the struct. This function checks if the querying type matches the
-        /// internal type field, and logs error if the types do not match.
+        /// Gets long value from the struct. This function checks if the querying type matches the internal
+        /// type field, and logs error if the types do not match.
         /// </summary>
         /// <returns>Returns long value stored in the struct.</returns>
         public long AsLong()
@@ -242,8 +240,8 @@ namespace GoogleARCore
         }
 
         /// <summary>
-        /// Gets double value from the struct. This function checks if the querying type matches the
-        /// internal type field, and logs error if the types do not match.
+        /// Gets double value from the struct. This function checks if the querying type matches the internal
+        /// type field, and logs error if the types do not match.
         /// </summary>
         /// <returns>Returns double value stored in the struct.</returns>
         public double AsDouble()
@@ -257,8 +255,8 @@ namespace GoogleARCore
         }
 
         /// <summary>
-        /// Gets CameraMetadataRational value from the struct. This function checks if the querying
-        /// type matches the internal type field, and logs error if the types do not match.
+        /// Gets CameraMetadataRational value from the struct. This function checks if the querying type matches the internal
+        /// type field, and logs error if the types do not match.
         /// </summary>
         /// <returns>Returns CameraMetadataRational value stored in the struct.</returns>
         public CameraMetadataRational AsRational()
@@ -273,10 +271,9 @@ namespace GoogleARCore
 
         private void LogError(NdkCameraMetadataType requestedType)
         {
-            ARDebug.LogErrorFormat(
-                "Error getting value from CameraMetadataType due to type mismatch. " +
-                "requested type = {0}, internal type = {1}\n" +
-                "Are you sure you are querying the correct type?", requestedType, m_Type);
+            ARDebug.LogErrorFormat("Error getting value from CameraMetadataType due to type mismatch. " +
+                    "requested type = {0}, internal type = {1}\n" +
+                    "Are you sure you are querying the correct type?", requestedType, m_Type);
         }
     }
 

@@ -44,8 +44,8 @@ namespace GoogleARCore
         }
 
         /// <summary>
-        /// Gets a reference to the plane subsuming this plane, if any. If not null, only the
-        /// subsuming plane should be considered valid for rendering.
+        /// Gets a reference to the plane subsuming this plane, if any. If not null, only the subsuming plane should be
+        /// considered valid for rendering.
         /// </summary>
         public DetectedPlane SubsumedBy
         {
@@ -53,8 +53,7 @@ namespace GoogleARCore
             {
                 if (_IsSessionDestroyed())
                 {
-                    Debug.LogError(
-                        "SubsumedBy:: Trying to access a session that has already been destroyed.");
+                    Debug.LogError("SubsumedBy:: Trying to access a session that has already been destroyed.");
                     return null;
                 }
 
@@ -71,8 +70,7 @@ namespace GoogleARCore
             {
                 if (_IsSessionDestroyed())
                 {
-                    Debug.LogError(
-                        "CenterPose:: Trying to access a session that has already been destroyed.");
+                    Debug.LogError("CenterPose:: Trying to access a session that has already been destroyed.");
                     return new Pose();
                 }
 
@@ -89,8 +87,7 @@ namespace GoogleARCore
             {
                 if (_IsSessionDestroyed())
                 {
-                    Debug.LogError(
-                        "ExtentX:: Trying to access a session that has already been destroyed.");
+                    Debug.LogError("ExtentX:: Trying to access a session that has already been destroyed.");
                     return 0f;
                 }
 
@@ -107,8 +104,7 @@ namespace GoogleARCore
             {
                 if (_IsSessionDestroyed())
                 {
-                    Debug.LogError(
-                        "ExtentZ:: Trying to access a session that has already been destroyed.");
+                    Debug.LogError("ExtentZ:: Trying to access a session that has already been destroyed.");
                     return 0f;
                 }
 
@@ -117,37 +113,15 @@ namespace GoogleARCore
         }
 
         /// <summary>
-        /// Gets the type of the plane.
+        /// Gets a list of points (in clockwise order) in Unity world space representing a boundary polygon for
+        /// the plane.
         /// </summary>
-        public DetectedPlaneType PlaneType
-        {
-            get
-            {
-                if (_IsSessionDestroyed())
-                {
-                    Debug.LogError(
-                        "PlaneType:: Trying to access a session that has already been destroyed.");
-                    return DetectedPlaneType.HorizontalUpwardFacing;
-                }
-
-                return m_NativeSession.PlaneApi.GetPlaneType(m_TrackableNativeHandle);
-            }
-        }
-
-        /// <summary>
-        /// Gets a list of points (in clockwise order) in Unity world space representing a boundary
-        /// polygon for the plane.
-        /// </summary>
-        /// <param name="boundaryPolygonPoints">A list of <b>Vector3</b> to be filled by the method
-        /// call.</param>
-        [SuppressMemoryAllocationError(Reason = "List could be resized.")]
+        /// <param name="boundaryPolygonPoints">A list of <b>Vector3</b> to be filled by the method call.</param>
         public void GetBoundaryPolygon(List<Vector3> boundaryPolygonPoints)
         {
             if (_IsSessionDestroyed())
             {
-                Debug.LogError(
-                    "GetBoundaryPolygon:: Trying to access a session that has already been " +
-                    "destroyed.");
+                Debug.LogError("GetBoundaryPolygon:: Trying to access a session that has already been destroyed.");
                 return;
             }
 

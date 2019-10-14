@@ -29,15 +29,6 @@ namespace GoogleARCore.Examples.AugmentedImage
     /// <summary>
     /// Controller for AugmentedImage example.
     /// </summary>
-    /// <remarks>
-    /// In this sample, we assume all images are static or moving slowly with
-    /// a large occupation of the screen. If the target is actively moving,
-    /// we recommend to check <see cref="AugmentedImage.TrackingMethod"/> and
-    /// render only when the tracking method equals to
-    /// <see cref="AugmentedImageTrackingMethod"/>.<c>FullTracking</c>.
-    /// See details in <a href="https://developers.google.com/ar/develop/c/augmented-images/">
-    /// Recognize and Augment Images</a>
-    /// </remarks>
     public class AugmentedImageExampleController : MonoBehaviour
     {
         /// <summary>
@@ -56,16 +47,6 @@ namespace GoogleARCore.Examples.AugmentedImage
         private List<AugmentedImage> m_TempAugmentedImages = new List<AugmentedImage>();
 
         /// <summary>
-        /// The Unity Awake() method.
-        /// </summary>
-        public void Awake()
-        {
-            // Enable ARCore to target 60fps camera capture frame rate on supported devices.
-            // Note, Application.targetFrameRate is ignored when QualitySettings.vSyncCount != 0.
-            Application.targetFrameRate = 60;
-        }
-
-        /// <summary>
         /// The Unity Update method.
         /// </summary>
         public void Update()
@@ -76,22 +57,17 @@ namespace GoogleARCore.Examples.AugmentedImage
                 Application.Quit();
             }
 
-            // Only allow the screen to sleep when not tracking.
+            // Check that motion tracking is tracking.
             if (Session.Status != SessionStatus.Tracking)
             {
-                Screen.sleepTimeout = SleepTimeout.SystemSetting;
-            }
-            else
-            {
-                Screen.sleepTimeout = SleepTimeout.NeverSleep;
+                return;
             }
 
             // Get updated augmented images for this frame.
-            Session.GetTrackables<AugmentedImage>(
-                m_TempAugmentedImages, TrackableQueryFilter.Updated);
+            Session.GetTrackables<AugmentedImage>(m_TempAugmentedImages, TrackableQueryFilter.Updated);
 
-            // Create visualizers and anchors for updated augmented images that are tracking and do
-            // not previously have a visualizer. Remove visualizers for stopped images.
+            // Create visualizers and anchors for updated augmented images that are tracking and do not previously
+            // have a visualizer. Remove visualizers for stopped images.
             foreach (var image in m_TempAugmentedImages)
             {
                 AugmentedImageVisualizer visualizer = null;
@@ -100,8 +76,7 @@ namespace GoogleARCore.Examples.AugmentedImage
                 {
                     // Create an anchor to ensure that ARCore keeps tracking this augmented image.
                     Anchor anchor = image.CreateAnchor(image.CenterPose);
-                    visualizer = (AugmentedImageVisualizer)Instantiate(
-                        AugmentedImageVisualizerPrefab, anchor.transform);
+                    visualizer = (AugmentedImageVisualizer)Instantiate(AugmentedImageVisualizerPrefab, anchor.transform);
                     visualizer.Image = image;
                     m_Visualizers.Add(image.DatabaseIndex, visualizer);
                 }

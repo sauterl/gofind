@@ -46,8 +46,7 @@ namespace GoogleARCore.Examples.ComputerVision
         /// <summary>
         /// Output image format.
         /// </summary>
-        public TextureReaderApi.ImageFormatType ImageFormat =
-            TextureReaderApi.ImageFormatType.ImageFormatGrayscale;
+        public TextureReaderApi.ImageFormatType ImageFormat = TextureReaderApi.ImageFormatType.ImageFormatGrayscale;
 
         private const int k_ARCoreTextureWidth = 1920;
         private const int k_ARCoreTextureHeight = 1080;
@@ -66,9 +65,7 @@ namespace GoogleARCore.Examples.ComputerVision
         /// <param name="height">The height of the image, in pixels.</param>
         /// <param name="pixelBuffer">The pointer to the raw buffer of the image pixels.</param>
         /// <param name="bufferSize">The size of the image buffer, in bytes.</param>
-        public delegate void OnImageAvailableCallbackFunc(
-            TextureReaderApi.ImageFormatType format, int width, int height, IntPtr pixelBuffer,
-            int bufferSize);
+        public delegate void OnImageAvailableCallbackFunc(TextureReaderApi.ImageFormatType format, int width, int height, IntPtr pixelBuffer, int bufferSize);
 
         /// <summary>
         /// Callback function handle for receiving the output images.
@@ -86,8 +83,7 @@ namespace GoogleARCore.Examples.ComputerVision
             KeepAspectRatio,
 
             /// <summary>
-            /// Samples the entire texture and does not crop. The aspect ratio may be different from
-            /// the texture aspect ratio.
+            /// Samples the entire texture and does not crop. The aspect ratio may be different from the texture aspect ratio.
             /// </summary>
             CoverFullViewport
         }
@@ -138,9 +134,7 @@ namespace GoogleARCore.Examples.ComputerVision
             {
             case CommandType.Create:
             {
-                m_TextureReaderApi.Create(
-                    ImageFormat, ImageWidth, ImageHeight,
-                    ImageSampleMode == SampleMode.KeepAspectRatio);
+                m_TextureReaderApi.Create(ImageFormat, ImageWidth, ImageHeight, ImageSampleMode == SampleMode.KeepAspectRatio);
                 break;
             }
 
@@ -148,9 +142,7 @@ namespace GoogleARCore.Examples.ComputerVision
             {
                 m_TextureReaderApi.ReleaseFrame(m_ImageBufferIndex);
                 m_TextureReaderApi.Destroy();
-                m_TextureReaderApi.Create(
-                    ImageFormat, ImageWidth, ImageHeight,
-                    ImageSampleMode == SampleMode.KeepAspectRatio);
+                m_TextureReaderApi.Create(ImageFormat, ImageWidth, ImageHeight, ImageSampleMode == SampleMode.KeepAspectRatio);
                 m_ImageBufferIndex = -1;
                 break;
             }
@@ -169,13 +161,11 @@ namespace GoogleARCore.Examples.ComputerVision
                 {
                     // Get image pixels from previously submitted request.
                     int bufferSize = 0;
-                    IntPtr pixelBuffer =
-                        m_TextureReaderApi.AcquireFrame(m_ImageBufferIndex, ref bufferSize);
+                    IntPtr pixelBuffer = m_TextureReaderApi.AcquireFrame(m_ImageBufferIndex, ref bufferSize);
 
                     if (pixelBuffer != IntPtr.Zero && OnImageAvailableCallback != null)
                     {
-                        OnImageAvailableCallback(
-                            ImageFormat, ImageWidth, ImageHeight, pixelBuffer, bufferSize);
+                        OnImageAvailableCallback(ImageFormat, ImageWidth, ImageHeight, pixelBuffer, bufferSize);
                     }
 
                     // Release the texture reader internal buffer.
@@ -194,8 +184,8 @@ namespace GoogleARCore.Examples.ComputerVision
             if (Frame.CameraImage.Texture != null)
             {
                 int textureId = Frame.CameraImage.Texture.GetNativeTexturePtr().ToInt32();
-                m_ImageBufferIndex = m_TextureReaderApi.SubmitFrame(
-                    textureId, k_ARCoreTextureWidth, k_ARCoreTextureHeight);
+                m_ImageBufferIndex =
+                    m_TextureReaderApi.SubmitFrame(textureId, k_ARCoreTextureWidth, k_ARCoreTextureHeight);
             }
 
             // Set next command.

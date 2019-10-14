@@ -24,7 +24,6 @@ namespace GoogleARCore.Examples.HelloAR
     using GoogleARCore;
     using GoogleARCore.Examples.Common;
     using UnityEngine;
-    using UnityEngine.EventSystems;
 
 #if UNITY_EDITOR
     // Set up touch input propagation while using Instant Preview in the editor.
@@ -37,46 +36,40 @@ namespace GoogleARCore.Examples.HelloAR
     public class HelloARController : MonoBehaviour
     {
         /// <summary>
-        /// The first-person camera being used to render the passthrough camera image (i.e. AR
-        /// background).
+        /// The first-person camera being used to render the passthrough camera image (i.e. AR background).
         /// </summary>
         public Camera FirstPersonCamera;
 
         /// <summary>
-        /// A prefab to place when a raycast from a user touch hits a vertical plane.
+        /// A prefab for tracking and visualizing detected planes.
         /// </summary>
-        public GameObject GameObjectVerticalPlanePrefab;
+        public GameObject DetectedPlanePrefab;
 
         /// <summary>
-        /// A prefab to place when a raycast from a user touch hits a horizontal plane.
+        /// A model to place when a raycast from a user touch hits a plane.
         /// </summary>
-        public GameObject GameObjectHorizontalPlanePrefab;
+        public GameObject AndyAndroidPrefab;
 
         /// <summary>
-        /// A prefab to place when a raycast from a user touch hits a feature point.
+        /// A gameobject parenting UI for displaying the "searching for planes" snackbar.
         /// </summary>
-        public GameObject GameObjectPointPrefab;
+        public GameObject SearchingForPlaneUI;
 
         /// <summary>
-        /// The rotation in degrees need to apply to prefab when it is placed.
+        /// The rotation in degrees need to apply to model when the Andy model is placed.
         /// </summary>
-        private const float k_PrefabRotation = 180.0f;
+        private const float k_ModelRotation = 180.0f;
 
         /// <summary>
-        /// True if the app is in the process of quitting due to an ARCore connection error,
-        /// otherwise false.
+        /// A list to hold all planes ARCore is tracking in the current frame. This object is used across
+        /// the application to avoid per-frame allocations.
+        /// </summary>
+        private List<DetectedPlane> m_AllPlanes = new List<DetectedPlane>();
+
+        /// <summary>
+        /// True if the app is in the process of quitting due to an ARCore connection error, otherwise false.
         /// </summary>
         private bool m_IsQuitting = false;
-
-        /// <summary>
-        /// The Unity Awake() method.
-        /// </summary>
-        public void Awake()
-        {
-            // Enable ARCore to target 60fps camera capture frame rate on supported devices.
-            // Note, Application.targetFrameRate is ignored when QualitySettings.vSyncCount != 0.
-            Application.targetFrameRate = 60;
-        }
 
         /// <summary>
         /// The Unity Update() method.
@@ -85,15 +78,23 @@ namespace GoogleARCore.Examples.HelloAR
         {
             _UpdateApplicationLifecycle();
 
+            // Hide snackbar when currently tracking at least one plane.
+            Session.GetTrackables<DetectedPlane>(m_AllPlanes);
+            bool showSearchingUI = true;
+            for (int i = 0; i < m_AllPlanes.Count; i++)
+            {
+                if (m_AllPlanes[i].TrackingState == TrackingState.Tracking)
+                {
+                    showSearchingUI = false;
+                    break;
+                }
+            }
+
+            SearchingForPlaneUI.SetActive(showSearchingUI);
+
             // If the player has not touched the screen, we are done with this update.
             Touch touch;
             if (Input.touchCount < 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began)
-            {
-                return;
-            }
-
-            // Should not handle input if the player is pointing on UI.
-            if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
             {
                 return;
             }
@@ -115,42 +116,18 @@ namespace GoogleARCore.Examples.HelloAR
                 }
                 else
                 {
-                    // Choose the prefab based on the Trackable that got hit.
-                    GameObject prefab;
-                    if (hit.Trackable is FeaturePoint)
-                    {
-                        prefab = GameObjectPointPrefab;
-                    }
-                    else if (hit.Trackable is DetectedPlane)
-                    {
-                        DetectedPlane detectedPlane = hit.Trackable as DetectedPlane;
-                        if (detectedPlane.PlaneType == DetectedPlaneType.Vertical)
-                        {
-                            prefab = GameObjectVerticalPlanePrefab;
-                        }
-                        else
-                        {
-                            prefab = GameObjectHorizontalPlanePrefab;
-                        }
-                    }
-                    else
-                    {
-                        prefab = GameObjectHorizontalPlanePrefab;
-                    }
+                    // Instantiate Andy model at the hit pose.
+                    var andyObject = Instantiate(AndyAndroidPrefab, hit.Pose.position, hit.Pose.rotation);
 
-                    // Instantiate prefab at the hit pose.
-                    var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
+                    // Compensate for the hitPose rotation facing away from the raycast (i.e. camera).
+                    andyObject.transform.Rotate(0, k_ModelRotation, 0, Space.Self);
 
-                    // Compensate for the hitPose rotation facing away from the raycast (i.e.
-                    // camera).
-                    gameObject.transform.Rotate(0, k_PrefabRotation, 0, Space.Self);
-
-                    // Create an anchor to allow ARCore to track the hitpoint as understanding of
-                    // the physical world evolves.
+                    // Create an anchor to allow ARCore to track the hitpoint as understanding of the physical
+                    // world evolves.
                     var anchor = hit.Trackable.CreateAnchor(hit.Pose);
 
-                    // Make game object a child of the anchor.
-                    gameObject.transform.parent = anchor.transform;
+                    // Make Andy model a child of the anchor.
+                    andyObject.transform.parent = anchor.transform;
                 }
             }
         }
@@ -169,7 +146,8 @@ namespace GoogleARCore.Examples.HelloAR
             // Only allow the screen to sleep when not tracking.
             if (Session.Status != SessionStatus.Tracking)
             {
-                Screen.sleepTimeout = SleepTimeout.SystemSetting;
+                const int lostTrackingSleepTimeout = 15;
+                Screen.sleepTimeout = lostTrackingSleepTimeout;
             }
             else
             {
@@ -181,8 +159,7 @@ namespace GoogleARCore.Examples.HelloAR
                 return;
             }
 
-            // Quit if ARCore was unable to connect and give Unity some time for the toast to
-            // appear.
+            // Quit if ARCore was unable to connect and give Unity some time for the toast to appear.
             if (Session.Status == SessionStatus.ErrorPermissionNotGranted)
             {
                 _ShowAndroidToastMessage("Camera permission is needed to run this application.");
@@ -191,8 +168,7 @@ namespace GoogleARCore.Examples.HelloAR
             }
             else if (Session.Status.IsError())
             {
-                _ShowAndroidToastMessage(
-                    "ARCore encountered a problem connecting.  Please start the app again.");
+                _ShowAndroidToastMessage("ARCore encountered a problem connecting.  Please start the app again.");
                 m_IsQuitting = true;
                 Invoke("_DoQuit", 0.5f);
             }
@@ -213,17 +189,15 @@ namespace GoogleARCore.Examples.HelloAR
         private void _ShowAndroidToastMessage(string message)
         {
             AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            AndroidJavaObject unityActivity =
-                unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            AndroidJavaObject unityActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
 
             if (unityActivity != null)
             {
                 AndroidJavaClass toastClass = new AndroidJavaClass("android.widget.Toast");
                 unityActivity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
                 {
-                    AndroidJavaObject toastObject =
-                        toastClass.CallStatic<AndroidJavaObject>(
-                            "makeText", unityActivity, message, 0);
+                    AndroidJavaObject toastObject = toastClass.CallStatic<AndroidJavaObject>("makeText", unityActivity,
+                        message, 0);
                     toastObject.Call("show");
                 }));
             }

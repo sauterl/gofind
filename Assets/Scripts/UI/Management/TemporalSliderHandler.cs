@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Principal;
 using Assets.Modules.SimpleLogging;
 using Assets.Scripts.Core;
 using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models;

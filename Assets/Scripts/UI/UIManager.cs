@@ -1,4 +1,4 @@
-﻿using System;
+﻿using global::System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.GoFindMap.Scripts;
@@ -11,7 +11,6 @@ using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models;
 using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Utils;
 using UnityEngine;
 using UnityEngine.UI;
-using Logger = UnityEngine.Logger;
 
 public class UIManager : MonoBehaviour {
     private MultimediaObject activeMmo;

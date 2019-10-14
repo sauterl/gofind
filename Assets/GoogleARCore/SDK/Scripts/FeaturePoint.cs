@@ -36,8 +36,7 @@ namespace GoogleARCore
         /// </summary>
         /// <param name="nativeHandle">A handle to the native ARCore API Trackable.</param>
         /// <param name="nativeApi">The ARCore native api.</param>
-        internal FeaturePoint(IntPtr nativeHandle, NativeSession nativeApi) :
-            base(nativeHandle, nativeApi)
+        internal FeaturePoint(IntPtr nativeHandle, NativeSession nativeApi) : base(nativeHandle, nativeApi)
         {
         }
 
@@ -50,8 +49,7 @@ namespace GoogleARCore
             {
                 if (_IsSessionDestroyed())
                 {
-                    Debug.LogError(
-                        "Pose:: Trying to access a session that has already been destroyed.");
+                    Debug.LogError("Pose:: Trying to access a session that has already been destroyed.");
                     return new Pose();
                 }
 
@@ -64,15 +62,11 @@ namespace GoogleARCore
         /// </summary>
         public FeaturePointOrientationMode OrientationMode
         {
-            [SuppressMemoryAllocationError(
-                IsWarning = true, Reason = "Requires further investigation.")]
             get
             {
                 if (_IsSessionDestroyed())
                 {
-                    Debug.LogError(
-                        "OrientationMode:: Trying to access a session that has already been " +
-                        "destroyed.");
+                    Debug.LogError("OrientationMode:: Trying to access a session that has already been destroyed.");
                     return FeaturePointOrientationMode.Identity;
                 }
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Assets.Modules.SimpleLogging;
 using Assets.Plugins.LocationAwarenessPlugin;
 using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models;

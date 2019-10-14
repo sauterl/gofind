@@ -62,7 +62,6 @@ namespace GoogleARCore
         /// </summary>
         public string Name
         {
-            [SuppressMemoryAllocationError(IsWarning = true, Reason = "Allocates new string")]
             get
             {
                 return m_NativeSession.AugmentedImageApi.GetName(m_TrackableNativeHandle);
@@ -121,18 +120,6 @@ namespace GoogleARCore
             get
             {
                 return m_NativeSession.AugmentedImageApi.GetExtentZ(m_TrackableNativeHandle);
-            }
-        }
-
-        /// <summary>
-        /// Gets the current method being used to track this Augmented Image.
-        /// </summary>
-        /// <value>The current tracking method being used.</value>
-        public AugmentedImageTrackingMethod TrackingMethod
-        {
-            get
-            {
-                return m_NativeSession.AugmentedImageApi.GetTrackingMethod(m_TrackableNativeHandle);
             }
         }
     }

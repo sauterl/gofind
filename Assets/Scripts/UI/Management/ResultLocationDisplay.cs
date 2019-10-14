@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Assets.GoFindMap.Scripts;
+﻿using Assets.GoFindMap.Scripts;
 using Assets.Scripts.Core;
 using Assets.Scripts.UI;
 using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models;
