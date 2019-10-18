@@ -22,9 +22,7 @@ namespace GoogleARCoreInternal
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Runtime.InteropServices;
-    using System.Threading;
+    using System.Reflection;
     using GoogleARCore;
 
     internal class ExperimentManager
@@ -38,13 +36,29 @@ namespace GoogleARCoreInternal
             // state. Find and hook them up.
             m_Experiments = new List<ExperimentBase>();
 
-            var implementingTypes = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(s => s.GetTypes())
-                .Where(p => typeof(ExperimentBase).IsAssignableFrom(p));
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            List<Type> allTypes = new List<Type>();
 
-            foreach (var type in implementingTypes)
+            foreach (var assembly in assemblies)
             {
-                if (!type.IsClass || type.IsAbstract)
+                try
+                {
+                    var assemblyTypes = assembly.GetTypes();
+                    allTypes.AddRange(assemblyTypes);
+                }
+                catch (ReflectionTypeLoadException ex)
+                {
+                    UnityEngine.Debug.Log(
+                        "Unable to load types from assembly:: " + assembly.ToString() + ":: " +
+                        ex.Message);
+                }
+            }
+
+            foreach (var type in allTypes)
+            {
+                if (!type.IsClass ||
+                    type.IsAbstract ||
+                    !typeof(ExperimentBase).IsAssignableFrom(type))
                 {
                     continue;
                 }
@@ -53,7 +67,8 @@ namespace GoogleARCoreInternal
             }
         }
 
-        private delegate void OnBeforeSetConfigurationCallback(IntPtr sessionHandhle, IntPtr configHandle);
+        private delegate void OnBeforeSetConfigurationCallback(
+            IntPtr sessionHandhle, IntPtr configHandle);
 
         public static ExperimentManager Instance
         {
@@ -62,7 +77,6 @@ namespace GoogleARCoreInternal
                 if (s_Instance == null)
                 {
                     s_Instance = new ExperimentManager();
-                    LifecycleManager.Instance.EarlyUpdate += s_Instance._OnEarlyUpdate;
                 }
 
                 return s_Instance;
@@ -86,6 +100,13 @@ namespace GoogleARCoreInternal
             }
         }
 
+        public void Initialize()
+        {
+            LifecycleManager.Instance.EarlyUpdate += s_Instance._OnEarlyUpdate;
+            LifecycleManager.Instance.UpdateSessionFeatures +=
+                s_Instance.OnUpdateSessionFeatures;
+        }
+
         public void OnBeforeSetConfiguration(IntPtr sessionHandle, IntPtr configHandle)
         {
             foreach (var experiment in m_Experiments)
@@ -99,6 +120,17 @@ namespace GoogleARCoreInternal
             return _GetTrackableTypeManager(trackableType) != null;
         }
 
+        public TrackableHitFlags GetTrackableHitFlags(int trackableType)
+        {
+            ExperimentBase trackableManager = _GetTrackableTypeManager(trackableType);
+            if (trackableManager != null)
+            {
+                return trackableManager.GetTrackableHitFlags(trackableType);
+            }
+
+            return TrackableHitFlags.None;
+        }
+
         public Trackable TrackableFactory(int trackableType, IntPtr trackableHandle)
         {
             ExperimentBase trackableManager = _GetTrackableTypeManager(trackableType);
@@ -107,8 +139,15 @@ namespace GoogleARCoreInternal
                 return trackableManager.TrackableFactory(trackableType, trackableHandle);
             }
 
-            throw new NotImplementedException(
-                    "ExperimentManager.TrackableFactory::No constructor for requested trackable type.");
+            return null;
+        }
+
+        public void OnUpdateSessionFeatures()
+        {
+            foreach (var experiment in m_Experiments)
+            {
+                experiment.OnUpdateSessionFeatures();
+            }
         }
 
         private void _OnEarlyUpdate()
