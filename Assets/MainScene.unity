@@ -1700,7 +1700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &138927147
@@ -3340,7 +3340,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &299241521
@@ -3922,7 +3922,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00009925964}
+  m_AnchoredPosition: {x: 0, y: 0.000036788268}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &353191783
@@ -5835,7 +5835,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &475930639
@@ -9634,10 +9634,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c47aa256c41420fa34a33076c232771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QbEDisplayPrefab: {fileID: 0}
-  QbLDisplayPrefab: {fileID: 0}
-  QbTDisplayPrefab: {fileID: 0}
-  ScrollContent: {fileID: 0}
+  QbEDisplayPrefab: {fileID: 1443366550818296, guid: 1607edd8c80460f44862adfcf71c3567,
+    type: 3}
+  QbLDisplayPrefab: {fileID: 1889401940779508, guid: 0ebca5e6d2dc2e44993e15aabcd7d99c,
+    type: 3}
+  QbTDisplayPrefab: {fileID: 1427676206309804, guid: 4f387008149fc6d4bbb22787a1d3516f,
+    type: 3}
+  ScrollContent: {fileID: 1518818562}
   MapControllerGameObjectName: MapPlane
   UIManagerGameObjectName: MainCanvas
   ExampleInputGameObjectName: QueryImagePanel
@@ -12207,7 +12210,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 87426841}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15394,7 +15397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1326798112
@@ -16081,22 +16084,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcccad7bb0364f94582767acfe852320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alphaController: {fileID: 0}
+  alphaController: {fileID: 1535415385}
   camToggler: {fileID: 0}
-  choiceTitle: {fileID: 0}
+  choiceTitle: {fileID: 927985120}
   controller: {fileID: 0}
-  headingDisplay: {fileID: 0}
-  infoText: {fileID: 0}
+  headingDisplay: {fileID: 567274912}
+  infoText: {fileID: 1116490929}
   mapTouchController: {fileID: 0}
   panelManager: {fileID: 0}
-  prefab: {fileID: 0}
-  presenter: {fileID: 0}
-  resetSessionButton: {fileID: 0}
-  scrollContent: {fileID: 0}
-  temporalSlider: {fileID: 0}
-  viewChoiceHomeBtn: {fileID: 0}
-  viewDisplayHomeBtn: {fileID: 0}
-  watchAllIndication: {fileID: 0}
+  prefab: {fileID: 1554835329320928, guid: d0de19dc6a5e1ff4f974dae7dd49febf, type: 3}
+  presenter: {fileID: 1326798114}
+  resetSessionButton: {fileID: 469118053}
+  scrollContent: {fileID: 1518818562}
+  temporalSlider: {fileID: 1527845757}
+  viewChoiceHomeBtn: {fileID: 235678513}
+  viewDisplayHomeBtn: {fileID: 1109161620}
+  watchAllIndication: {fileID: 367189911}
 --- !u!114 &1413416547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19245,7 +19248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1679494873
@@ -19326,7 +19329,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.051250003, y: 0.05633013}
   m_AnchorMax: {x: 0.94250005, y: 0.73549527}
-  m_AnchoredPosition: {x: -0.124572754, y: -0.12701416}
+  m_AnchoredPosition: {x: -0.124572754, y: -0.12695312}
   m_SizeDelta: {x: 0, y: -1.2549992}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1718816240
@@ -20556,8 +20559,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScreenPrefab: {fileID: 0}
-  mapController: {fileID: 0}
-  uiManager: {fileID: 0}
+  mapController: {fileID: 137699280}
+  uiManager: {fileID: 1413416546}
   DisplayAR: 0
 --- !u!4 &1862186382
 Transform:
@@ -20956,12 +20959,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114391220247040114, guid: 2f95ffc5b29dbf44daa8bea29320ca34,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 60d242b3578964c478b94ef8ae90ac5a,
-        type: 3}
     - target: {fileID: 114033335302458306, guid: 2f95ffc5b29dbf44daa8bea29320ca34,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -20977,11 +20974,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114926198539414460, guid: 2f95ffc5b29dbf44daa8bea29320ca34,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60d242b3578964c478b94ef8ae90ac5a,
+        type: 3}
     - target: {fileID: 1434428311918078, guid: 2f95ffc5b29dbf44daa8bea29320ca34, type: 3}
       propertyPath: m_Name
       value: ImageCamOn
       objectReference: {fileID: 0}
-    - target: {fileID: 114926198539414460, guid: 2f95ffc5b29dbf44daa8bea29320ca34,
+    - target: {fileID: 114391220247040114, guid: 2f95ffc5b29dbf44daa8bea29320ca34,
         type: 3}
       propertyPath: m_Sprite
       value: 
@@ -21977,7 +21980,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.051250003, y: 0.05633013}
   m_AnchorMax: {x: 0.94250005, y: 0.73549527}
-  m_AnchoredPosition: {x: -0.124572754, y: -0.12701416}
+  m_AnchoredPosition: {x: -0.124572754, y: -0.12695312}
   m_SizeDelta: {x: 0, y: -1.2549992}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1967903121
