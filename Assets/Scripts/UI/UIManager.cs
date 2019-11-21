@@ -53,6 +53,8 @@ public class UIManager : MonoBehaviour {
 
     public Image watchAllIndication;
 
+    public static UIManager Instance;
+    
     public void SetInitialLocation(LocationInfo initInfo) {
         initLocation = initInfo;
     }
@@ -69,6 +71,7 @@ public class UIManager : MonoBehaviour {
         }
 
         mapTouchController = GameObject.Find("MapPlane").GetComponent<MapTouchController>();
+        Instance = this;
     }
 
     // Use this for initialization
@@ -102,6 +105,7 @@ public class UIManager : MonoBehaviour {
         GameObject queryImagePanelObj = GameObject.Find("QueryImagePanel");
         //GameObject calibrationPanelObj = GameObject.Find("CalibrationPanel");
         GameObject arDisplayPnaelObj = GameObject.Find("ARDisplayPanel");
+        GameObject settingsPanelObj = GameObject.Find("SettingsPanel");
 
 
         //Panels
@@ -117,6 +121,7 @@ public class UIManager : MonoBehaviour {
         var queryImagePanel = new PanelManager.Panel("queryImage", queryImagePanelObj);
         //var calibrationPanel = new PanelManager.Panel("calibration", calibrationPanelObj);
         var arDisplayPanel = new PanelManager.Panel("ar-display", arDisplayPnaelObj);
+        var settingsPanel = new PanelManager.Panel("settings", settingsPanelObj);
 
         homePanel.next = choicePanel;
         choicePanel.previous = homePanel;
@@ -133,9 +138,13 @@ public class UIManager : MonoBehaviour {
         customizePanel.previous = homePanel;
         resultPanel.previous = mapPanel;
 
+        settingsPanel.next = homePanel;
+        settingsPanel.previous = homePanel;
+        settingsPanel.visibilityChangedHandler = showing => { if(showing){settingsPanel.obj.GetComponent<SettingsDialog>().Init();}};
+
         panelManager.RegisterAll(new[] {
             homePanel, choicePanel, displayPanel, mapPanel, customizePanel, resultPanel, filterPanel, waitingPanel,
-            mapShowPanel, queryImagePanel/*, calibrationPanel*/, arDisplayPanel
+            mapShowPanel, queryImagePanel/*, calibrationPanel*/, arDisplayPanel, settingsPanel
         });
         panelManager.SetInitial(homePanel);
         panelManager.ShowPanel("home");

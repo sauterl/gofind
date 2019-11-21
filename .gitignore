@@ -1,6 +1,6 @@
-# Credentials and Keys
-
+# Sensitive Information
 **Key.*
+.manifest.json
 
 # Temp files
 *~
