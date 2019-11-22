@@ -103,7 +103,7 @@ public class UIManager : MonoBehaviour {
         GameObject filterPanelObj = GameObject.Find("FilterPanel");
         GameObject waitingPanelObj = GameObject.Find("WaitingPanel");
         GameObject queryImagePanelObj = GameObject.Find("QueryImagePanel");
-        //GameObject calibrationPanelObj = GameObject.Find("CalibrationPanel");
+        GameObject calibrationPanelObj = GameObject.Find("CalibrationUI");
         GameObject arDisplayPnaelObj = GameObject.Find("ARDisplayPanel");
         GameObject settingsPanelObj = GameObject.Find("SettingsPanel");
 
@@ -119,7 +119,7 @@ public class UIManager : MonoBehaviour {
         var waitingPanel = new PanelManager.Panel("waiting", waitingPanelObj);
         var mapShowPanel = new PanelManager.Panel("mapShow", mapShowPanelObj);
         var queryImagePanel = new PanelManager.Panel("queryImage", queryImagePanelObj);
-        //var calibrationPanel = new PanelManager.Panel("calibration", calibrationPanelObj);
+        var calibrationPanel = new PanelManager.Panel("calibration", calibrationPanelObj);
         var arDisplayPanel = new PanelManager.Panel("ar-display", arDisplayPnaelObj);
         var settingsPanel = new PanelManager.Panel("settings", settingsPanelObj);
 
@@ -144,7 +144,7 @@ public class UIManager : MonoBehaviour {
 
         panelManager.RegisterAll(new[] {
             homePanel, choicePanel, displayPanel, mapPanel, customizePanel, resultPanel, filterPanel, waitingPanel,
-            mapShowPanel, queryImagePanel/*, calibrationPanel*/, arDisplayPanel, settingsPanel
+            mapShowPanel, queryImagePanel, calibrationPanel, arDisplayPanel, settingsPanel
         });
         panelManager.SetInitial(homePanel);
         panelManager.ShowPanel("home");
@@ -200,7 +200,7 @@ public class UIManager : MonoBehaviour {
         if (loadInRange) {
             Debug.Log("LOAD IN RANGE");
             List<MultimediaObject> inRangeList = controller.GetInRange(activeMmo);
-            temporalSlider.Setup(inRangeList, activeMmo);
+            temporalSlider.Setup(inRangeList, activeMmo); // ArgumentNull in DatetimeParser, parameter name s
         }
 
         controller.StopLocationServices();

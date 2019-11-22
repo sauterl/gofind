@@ -26,7 +26,7 @@ namespace Assets.Scripts.UI {
             if (popupShown) {
                 popupPanel.SetActive(true);
             } else {
-                popupPanel.SetActive(false);
+                popupPanel.SetActive(false); // TODO Investigate why Null
             }
             logger.Debug("Set popup to {0}", popupShown ? "active" : "inactive");
         }

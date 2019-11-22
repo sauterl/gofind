@@ -87,7 +87,7 @@ namespace Assets.Scripts.UI.Management {
             dict.Clear();
 
             foreach (MultimediaObject mmo in mmos) {
-                DateTime dt = DateTime.Parse(mmo.datetime);
+                DateTime dt = DateTime.Parse(mmo.datetime); // mmo.dateitme is null, TODO investigate
                 int key = dt.Year*10; // times ten to have multiple entries per year (10)
                 while (dict.ContainsKey(key)) {
                     logger.Debug("Key {0} already used. decrease key by one", key, key-1);

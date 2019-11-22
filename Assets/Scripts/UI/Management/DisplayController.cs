@@ -17,6 +17,7 @@ public class DisplayController : MonoBehaviour, IPointerDownHandler, IPointerUpH
     private ScreenOrientation lastOrientation;
 
     private Texture2D texture;
+    private ImagePresenter imgPresenter;
 
     public string titleStr;
 
@@ -31,7 +32,9 @@ public class DisplayController : MonoBehaviour, IPointerDownHandler, IPointerUpH
         titleText = transform.Find("ContentPanel/HeaderPanel/HeaderText").GetComponent<Text>();
         footerText = transform.Find("ContentPanel/FooterPanel/FooterText").GetComponent<Text>();
         bodyImage = transform.Find("ContentPanel/BodyPanel/BodyImage").GetComponent<RawImage>();
-        texture = new Texture2D(100, 100, TextureFormat.DXT1, false);
+        imgPresenter = gameObject.AddComponent<ImagePresenter>();
+        imgPresenter.imageDisplay = bodyImage;
+        // TODO No loading indicator for imgPresenter
         lastOrientation = Screen.orientation;
     }
 
@@ -43,35 +46,14 @@ public class DisplayController : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
         if (!string.IsNullOrEmpty(imageURL))
         {
-            StartCoroutine(LoadImageFromWeb());
+            imgPresenter.LoadImage(imageURL);
         }
     }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        
-    }
-
-    public void SetTexture(Texture2D texture)
-    {
-        this.texture = texture;
-    }
-
+    
     public void LoadImageFromWeb(string url)
     {
         imageURL = url;
-        StartCoroutine(LoadImageFromWeb());
-    }
-
-    private IEnumerator LoadImageFromWeb()
-    {
-        Debug.Log("Image URL: "+imageURL);
-        var www = new WWW(imageURL);
-        yield return www;
-        www.LoadImageIntoTexture(texture);
-        bodyImage.texture = texture;
-        bodyImage.SizeToParent();
+        imgPresenter.LoadImage(imageURL);
     }
 
     public void SetTitle(string title)

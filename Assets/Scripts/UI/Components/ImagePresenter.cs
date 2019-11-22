@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
@@ -24,7 +26,7 @@ namespace Assets.Scripts.UI
 
         private Texture2D texture;
 
-        private IEnumerator LoadImageFromWeb()
+        [Obsolete] private IEnumerator LoadImageFromWeb()
         {
             WWW www = new WWW(url);
             yield return www;
@@ -37,13 +39,35 @@ namespace Assets.Scripts.UI
             imageDisplay.SizeToParent();
         }
 
+        private IEnumerator RetrieveImage()
+        {
+            
+            using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(url, false))
+            {
+                yield return uwr.SendWebRequest();
+
+                yield return uwr.isDone;
+                
+                if (uwr.isNetworkError || uwr.isHttpError)
+                {
+                    Debug.LogErrorFormat("Unable to load image from {0} for reason {1}", url, uwr.error);
+                }
+                else
+                {
+                    imageDisplay.texture = DownloadHandlerTexture.GetContent(uwr);
+                    SwitchIndicator(false);
+                    imageDisplay.SizeToParent();
+                }
+            }
+        }
+        
         public void LoadImage(string url)
         {
             SetImageUrl(url);
             
             SwitchIndicator(true);
 
-            StartCoroutine(LoadImageFromWeb());
+            StartCoroutine(RetrieveImage());
         }
 
         private void SwitchIndicator(bool on) {
