@@ -21,6 +21,8 @@ namespace Assets.Scripts.UI
       var okBtn = transform.Find("BottomContainer/OkButton").gameObject.GetComponent<Button>();
       var cancelBtn = transform.Find("BottomContainer/CancelButton").gameObject.GetComponent<Button>();
 
+      okBtn.onClick.RemoveAllListeners();
+      cancelBtn.onClick.RemoveAllListeners();
       okBtn.onClick.AddListener(Store);
       cancelBtn.onClick.AddListener(Cancel);
     }
