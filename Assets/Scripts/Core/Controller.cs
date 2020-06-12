@@ -91,6 +91,8 @@ namespace Assets.Scripts.Core {
             headingDictionary = new HeadingDictionary();
 
             uiManager.controller = this;
+            
+            logger.Debug("CineastApi Config: "+JsonUtility.ToJson(CineastUtils.Configuration));
         }
 
         // maxDist in km

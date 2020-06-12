@@ -53,6 +53,8 @@ public class UIManager : MonoBehaviour {
 
     public Image watchAllIndication;
 
+    public static UIManager Instance;
+    
     public void SetInitialLocation(LocationInfo initInfo) {
         initLocation = initInfo;
     }
@@ -69,6 +71,7 @@ public class UIManager : MonoBehaviour {
         }
 
         mapTouchController = GameObject.Find("MapPlane").GetComponent<MapTouchController>();
+        Instance = this;
     }
 
     // Use this for initialization
@@ -100,8 +103,9 @@ public class UIManager : MonoBehaviour {
         GameObject filterPanelObj = GameObject.Find("FilterPanel");
         GameObject waitingPanelObj = GameObject.Find("WaitingPanel");
         GameObject queryImagePanelObj = GameObject.Find("QueryImagePanel");
-        //GameObject calibrationPanelObj = GameObject.Find("CalibrationPanel");
+        GameObject calibrationPanelObj = GameObject.Find("CalibrationUI");
         GameObject arDisplayPnaelObj = GameObject.Find("ARDisplayPanel");
+        GameObject settingsPanelObj = GameObject.Find("SettingsPanel");
 
 
         //Panels
@@ -115,8 +119,9 @@ public class UIManager : MonoBehaviour {
         var waitingPanel = new PanelManager.Panel("waiting", waitingPanelObj);
         var mapShowPanel = new PanelManager.Panel("mapShow", mapShowPanelObj);
         var queryImagePanel = new PanelManager.Panel("queryImage", queryImagePanelObj);
-        //var calibrationPanel = new PanelManager.Panel("calibration", calibrationPanelObj);
+        var calibrationPanel = new PanelManager.Panel("calibration", calibrationPanelObj);
         var arDisplayPanel = new PanelManager.Panel("ar-display", arDisplayPnaelObj);
+        var settingsPanel = new PanelManager.Panel("settings", settingsPanelObj);
 
         homePanel.next = choicePanel;
         choicePanel.previous = homePanel;
@@ -133,9 +138,13 @@ public class UIManager : MonoBehaviour {
         customizePanel.previous = homePanel;
         resultPanel.previous = mapPanel;
 
+        settingsPanel.next = homePanel;
+        settingsPanel.previous = homePanel;
+        settingsPanel.visibilityChangedHandler = showing => { if(showing){settingsPanel.obj.GetComponent<SettingsDialog>().Init();}};
+
         panelManager.RegisterAll(new[] {
             homePanel, choicePanel, displayPanel, mapPanel, customizePanel, resultPanel, filterPanel, waitingPanel,
-            mapShowPanel, queryImagePanel/*, calibrationPanel*/, arDisplayPanel
+            mapShowPanel, queryImagePanel, calibrationPanel, arDisplayPanel, settingsPanel
         });
         panelManager.SetInitial(homePanel);
         panelManager.ShowPanel("home");
@@ -191,7 +200,7 @@ public class UIManager : MonoBehaviour {
         if (loadInRange) {
             Debug.Log("LOAD IN RANGE");
             List<MultimediaObject> inRangeList = controller.GetInRange(activeMmo);
-            temporalSlider.Setup(inRangeList, activeMmo);
+            temporalSlider.Setup(inRangeList, activeMmo); // ArgumentNull in DatetimeParser, parameter name s
         }
 
         controller.StopLocationServices();
