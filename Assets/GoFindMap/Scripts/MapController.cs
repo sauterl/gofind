@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.UI;
-using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Legacy.Models;
 using UnityEngine;
 
 namespace Assets.GoFindMap.Scripts {
