@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Plugins.LocationAwarenessPlugin;
 using Assets.Scripts.Core;
-using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Legacy.Models;
 
 namespace Assets.Scripts.IO
 {

@@ -1,0 +1,10 @@
+{
+  "cineastHost": "http://10.34.58.145:1900/",
+  "mediaHost": "http://10.34.58.145/",
+  "categoryMappings": {
+    "mapping": {
+      "spatialdistance": "spatialdistance",
+      "temporaldistance": "temporaldistance"
+    }
+  }
+}

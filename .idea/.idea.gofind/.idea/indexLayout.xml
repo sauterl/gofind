@@ -3,7 +3,6 @@
   <component name="ContentModelUserStore">
     <attachedFolders />
     <explicitIncludes>
-      <Path>../UnityInterface/Assets/CineastUnityInterface</Path>
       <Path>Library/PackageCache/com.unity.ads@2.0.8</Path>
       <Path>Library/PackageCache/com.unity.ads@3.4.9</Path>
       <Path>Library/PackageCache/com.unity.analytics@3.2.2</Path>

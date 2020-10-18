@@ -1,15 +1,11 @@
-using System;
-using Assets.Scripts.Core;
-using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Utils;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Legacy.Utils;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
   public class SettingsDialog : MonoBehaviour
   {
-
     private InputField cineastInput;
     private InputField imagesInput;
 
@@ -39,7 +35,7 @@ namespace Assets.Scripts.UI
       CineastUtils.Configuration.cineastHost = cineastInput.text;
       CineastUtils.Configuration.imagesHost = imagesInput.text;
       CineastUtils.Configuration.Store();
-      
+
       UIManager.Instance.panelManager.ShowNext();
     }
 
@@ -48,6 +44,5 @@ namespace Assets.Scripts.UI
       Init();
       UIManager.Instance.panelManager.ShowPrevious();
     }
-
   }
 }

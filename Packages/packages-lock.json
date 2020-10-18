@@ -122,10 +122,11 @@
       "url": "https://packages.unity.com"
     },
     "com.vitrivr.unityinterface.cineastapi": {
-      "version": "file:../../UnityInterface/Assets/CineastUnityInterface/",
+      "version": "https://github.com/vitrivr/UnityInterface.git#latest",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "02e661dfe352759f6e4777ce569499cec3804308"
     },
     "nuget.mono-cecil": {
       "version": "0.1.6-preview",

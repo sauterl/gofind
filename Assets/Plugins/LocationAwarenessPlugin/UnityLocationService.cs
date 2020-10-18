@@ -186,7 +186,7 @@ namespace Assets.Plugins.LocationAwarenessPlugin
             Debug.Log("ULS:StartLocationService");
             if (!IsLocationServiceEnabled())
             {
-                Debug.LogError("ULS:No location service!");
+                Debug.LogError("ULS:No location service! Fallback to debug data");
                 yield break;
             }
 

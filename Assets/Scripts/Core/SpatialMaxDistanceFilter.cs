@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Assets.Modules.SimpleLogging;
 using Assets.Plugins.LocationAwarenessPlugin;
-using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models;
-using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Processing;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Legacy.Models;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Legacy.Processing;
 
 namespace Assets.Scripts.Core {
     public class SpatialMaxDistanceFilter : FilterStrategy{

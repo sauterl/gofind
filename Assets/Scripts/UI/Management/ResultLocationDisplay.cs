@@ -1,8 +1,8 @@
 ﻿using Assets.GoFindMap.Scripts;
 using Assets.Scripts.Core;
 using Assets.Scripts.UI;
-using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models;
-using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Utils;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Legacy.Models;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Legacy.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 

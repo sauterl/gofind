@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Assets.Modules.SimpleLogging;
 using Assets.Scripts.Core;
-using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Legacy.Models;
 using UnityEngine;
 using UnityEngine.UI;
 using Logger = Assets.Modules.SimpleLogging.Logger;

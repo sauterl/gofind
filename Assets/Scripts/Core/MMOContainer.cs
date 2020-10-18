@@ -1,4 +1,4 @@
-﻿using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models;
+﻿using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Legacy.Models;
 using UnityEngine;
 
 namespace Assets.Scripts.Core {

@@ -4,8 +4,9 @@ using Assets.GoFindMap.Scripts;
 using Assets.Modules.SimpleLogging;
 using Assets.Scripts.UI;
 using Assets.Scripts.UI.Query;
-using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Models.Messages.Query;
-using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Utils;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Legacy.Models.Messages.Query;
+using CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Legacy.Utils;
+using Org.Vitrivr.CineastApi.Model;
 using UnityEngine;
 using Logger = Assets.Modules.SimpleLogging.Logger;
 
@@ -212,6 +213,11 @@ namespace Assets.Scripts.Core
             if (locationTerm != null)
             {
                 terms.Add(locationTerm);
+                location = new GeoLocation();
+                var comaIdx = locationTerm.data.IndexOf(',');
+                location.latitude = double.Parse(locationTerm.data.Substring(1, comaIdx-1));
+                location.longitude =
+                    double.Parse(locationTerm.data.Substring(comaIdx + 1, locationTerm.data.Length - (comaIdx+1) - 1));
             }
 
             if (exampleTerm != null)
@@ -225,7 +231,32 @@ namespace Assets.Scripts.Core
             }
 
             SimilarQuery query = QueryFactory.BuildMultiTermQuery(terms.ToArray());
-            controller.GoMultiTermQuery(query);
+//            controller.GoMultiTermQuery(query);
+
+            
+            
+            SimilarityQuery simq;
+            // TODO Proper coding
+            if (locationTerm != null && timeTerm == null)
+            {
+                // spatial
+                simq = CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Utils.QueryBuilder
+                    .BuildSpatialSimilarityQuery(location.latitude, location.longitude);
+            }else if(timeTerm != null && locationTerm == null)
+            {
+                // temporal
+                simq = CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Utils.QueryBuilder
+                    .BuildTemporalSimilarityQuery(timeTerm.data);
+            }
+            else
+            {
+                // spatiotemporal
+                Debug.LogError("Spatiotemporal currently not supported. Using spatial instead");
+                simq = CineastUnityInterface.Runtime.Vitrivr.UnityInterface.CineastApi.Utils.QueryBuilder
+                    .BuildSpatialSimilarityQuery(location.latitude, location.longitude);
+            }
+            
+            controller.QueryCineastAndProcess(simq);
         }
 
         private void CollectTimeTerm()
